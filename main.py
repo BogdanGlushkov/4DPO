@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 from matplotlib.pylab import rcParams
-import seaborn as sns
 
 rcParams['figure.figsize'] = 20, 10
 
@@ -20,7 +19,7 @@ def main():
     plt.plot()
     plt.xlabel('Date', size=20)
     plt.ylabel('Stock price', size=20)
-    plt.title('Stock Price Prediction by moving Averages', size=20)
+    plt.title('Stock Price AAPL', size=20)
     plt.show()
 
     avg_rms = []
@@ -28,11 +27,11 @@ def main():
     avg_rms.append(moving_avg_prediction(df))
     avg_rms.append(linear_regression_prediction(df))
     avg_rms.append(k_nearest_neighbours_predict(df))
-    avg_rms.append(auto_arima_prediction(df))
     avg_rms.append(fb_prophet_prediction(df))
+    avg_rms.append(auto_arima_prediction(df))
     avg_rms.append(lstm_prediction(df))
 
-    models = ['Скользящие средние', 'Линейная регрессия', 'К-ближайщих соседей', 'ARIMA', 'Prophet', 'LSTM']
+    models = ['Скользящие средние', 'Линейная регрессия', 'К-ближайщих соседей', 'Prophet', 'ARIMA', 'LSTM']
 
     # Create a bar plot
     plt.bar(models, avg_rms)

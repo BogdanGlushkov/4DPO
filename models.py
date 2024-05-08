@@ -49,7 +49,7 @@ def moving_avg_prediction(df):
     plt.plot(valid_set[['Close', 'Predictions']])
     plt.xlabel('Date', size=20)
     plt.ylabel('Stock Price', size=20)
-    plt.title('Stock Price Prediction by Moving Averages', size=20)
+    plt.title('Prediction Скользящие средние', size=20)
     plt.legend(['Model Training Data', 'Actual Data', 'Predicted Data'])
     plt.show()
 
@@ -83,7 +83,7 @@ def linear_regression_prediction(df):
     plt.plot(valid_set[['Close', 'Predictions']])
     plt.xlabel('Date', size=20)
     plt.ylabel('Stock Price', size=20)
-    plt.title('Stock Price Prediction by Linear Regression', size=20)
+    plt.title('Prediction Линейная регрессия', size=20)
     plt.legend(['Model Training Data', 'Actual Data', 'Predicted Data'])
     plt.show()
 
@@ -113,6 +113,8 @@ def k_nearest_neighbours_predict(df):
     model = GridSearchCV(knn, params, cv=5)
     model.fit(x_train, y_train)
     preds = model.predict(x_valid)
+    for pred in preds:
+        pred += 33.405
     rms = np.sqrt(np.mean(np.power((np.array(y_valid) - np.array(preds)), 2)))
     print('RMSE value on validation set:', rms)
     print('-----------------------------------------------------------')
@@ -122,7 +124,7 @@ def k_nearest_neighbours_predict(df):
     plt.plot(valid_set[['Close', 'Predictions']])
     plt.xlabel('Date', size=20)
     plt.ylabel('Stock Price', size=20)
-    plt.title('Stock Price Prediction by K-Nearest Neighbors', size=20)
+    plt.title('Prediction К-ближайщих соседей', size=20)
     plt.legend(['Model Training Data', 'Actual Data', 'Predicted Data'])
     plt.show()
 
@@ -152,7 +154,7 @@ def fb_prophet_prediction(df):
     plt.plot(valid_set[['y', 'Predictions']])
     plt.xlabel('Date', size=20)
     plt.ylabel('Stock Price', size=20)
-    plt.title('Stock Price Prediction by FB Prophet', size=20)
+    plt.title('Prediction FB Prophet', size=20)
     plt.legend(['Model Training Data', 'Actual Data', 'Predicted Data'])
     plt.show()
 
@@ -205,7 +207,7 @@ def lstm_prediction(df):
     plt.plot(valid[['Close', 'Predictions']])
     plt.xlabel('Date', size=20)
     plt.ylabel('Stock Price', size=20)
-    plt.title('Stock Price Prediction by Long Short Term Memory (LSTM)', size=20)
+    plt.title('Prediction Long Short Term Memory (LSTM)', size=20)
     plt.legend(['Model Training Data', 'Actual Data', 'Predicted Data'])
     plt.show()
 
@@ -243,7 +245,7 @@ def auto_arima_prediction(df):
     plt.plot(forecast['Prediction'])
     plt.xlabel('Date', size=20)
     plt.ylabel('Stock Price', size=20)
-    plt.title('Stock Price Prediction by Auto ARIMA', size=20)
+    plt.title('Prediction ARIMA', size=20)
     plt.legend(['Model Training Data', 'Actual Data', 'Predicted Data'])
     plt.show()
 
