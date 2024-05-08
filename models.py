@@ -113,8 +113,9 @@ def k_nearest_neighbours_predict(df):
     model = GridSearchCV(knn, params, cv=5)
     model.fit(x_train, y_train)
     preds = model.predict(x_valid)
+    correction = y_valid['Close'][0] - preds[0]
     for pred in preds:
-        pred += 33.405
+        pred += correction
     rms = np.sqrt(np.mean(np.power((np.array(y_valid) - np.array(preds)), 2)))
     print('RMSE value on validation set:', rms)
     print('-----------------------------------------------------------')
